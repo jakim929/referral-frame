@@ -2,6 +2,9 @@
 
 Referrals on Farcaster using frames
 
+<img width="300" alt="image" src="https://github.com/jakim929/referral-frame/assets/9677071/8bf1cdbe-3841-495a-9dd2-ce2ccd96beec">
+
+
 ```mermaid
 flowchart TD
     ENTRYPOINT1 --> CREATE_PROJECT
