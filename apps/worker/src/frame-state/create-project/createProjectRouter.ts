@@ -1,4 +1,4 @@
-import { CreateProject } from '@/layouts/CreateProject'
+import { CreateProject } from '@/frame-state/create-project/CreateProject'
 import { WithDb, withDb } from '@/middlewares/withDb'
 import { WithFrameAction, withFrameAction } from '@/middlewares/withFrameAction'
 import { CF } from '@/types'

@@ -1,8 +1,9 @@
+import { InitialScreen } from '@/frame-state/initial-screen/InitialScreen'
 import { getSuccessfullyJoinedResponse } from '@/frame-state/successfully-joined/successfullyJoinedRouter'
-import { InitialScreen } from '@/layouts/InitialScreen'
 import { WithDb, withDb } from '@/middlewares/withDb'
 import { WithFrameAction, withFrameAction } from '@/middlewares/withFrameAction'
 import { CF } from '@/types'
+import { getFarcasterName } from '@/utils/getFarcasterName'
 import { IRequest, Router, html, status } from 'itty-router'
 import { ImageResponse } from 'workers-og'
 
@@ -13,7 +14,7 @@ const initialScreenRouter = Router({ base: INITIAL_SCREEN_BASE_PATH })
 initialScreenRouter.get('/', withDb, async ({ params, db }, env) => {
   const { projectId, referrerFid } = params
 
-  const [project, projectUser] = await Promise.all([
+  const [project, projectUser, farcasterDisplayName] = await Promise.all([
     db
       .selectFrom('projects')
       .selectAll()
@@ -25,6 +26,7 @@ initialScreenRouter.get('/', withDb, async ({ params, db }, env) => {
       .where('projectId', '=', projectId)
       .where('userFid', '=', referrerFid)
       .executeTakeFirst(),
+    getFarcasterName(env, Number(referrerFid)),
   ])
 
   if (!project || !projectUser) {
@@ -34,7 +36,7 @@ initialScreenRouter.get('/', withDb, async ({ params, db }, env) => {
   const baseRoute = `${env.PUBLIC_URL}/${projectId}/${referrerFid}/initial-screen`
   const postActionHandlerUrl = `${baseRoute}/handle-action`
   const imageUrl = `${baseRoute}/image`
-  const title = `${referrerFid} invites you to ${project.name}`
+  const title = `${farcasterDisplayName} invites you to ${project.name}`
   return html(
     `
 			<!DOCTYPE html>

@@ -1,5 +1,5 @@
 import { getCreateProjectResponse } from '@/frame-state/create-project/createProjectRouter'
-import { SuccessfullyJoined } from '@/layouts/SuccessfullyJoined'
+import { SuccessfullyJoined } from '@/frame-state/successfully-joined/SuccessfullyJoined'
 import { WithDb, withDb } from '@/middlewares/withDb'
 import { WithFrameAction, withFrameAction } from '@/middlewares/withFrameAction'
 import { CF } from '@/types'
