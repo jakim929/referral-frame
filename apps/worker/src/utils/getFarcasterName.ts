@@ -19,13 +19,16 @@ export const getFarcasterName = async (env: Env, fid: number) => {
     {
       headers: {
         accept: 'application/json',
-        'api-key': env.NEYNAR_API_KEY,
+        api_key: env.NEYNAR_API_KEY,
       },
     },
   )
+
+  const res2 = await result.json()
+
   return endpointResponseSchema
     .transform(({ users }) => {
       return users[0].display_name
     })
-    .parse(await result.json())
+    .parse(res2)
 }

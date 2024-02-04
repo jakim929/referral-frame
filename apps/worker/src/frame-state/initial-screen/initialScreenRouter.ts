@@ -60,11 +60,11 @@ initialScreenRouter.get('/', withDb, async ({ params, db }, env) => {
 initialScreenRouter.get<IRequest, CF>(
   '/image',
   withDb,
-  async ({ params, db }) => {
+  async ({ params, db }, env) => {
     // TODO: consider changing this function to be stateless
 
     const { projectId, referrerFid } = params
-    const [project, projectUser] = await Promise.all([
+    const [project, projectUser, farcasterDisplayName] = await Promise.all([
       db
         .selectFrom('projects')
         .selectAll()
@@ -76,6 +76,7 @@ initialScreenRouter.get<IRequest, CF>(
         .where('projectId', '=', projectId)
         .where('userFid', '=', referrerFid)
         .executeTakeFirst(),
+      getFarcasterName(env, Number(referrerFid)),
     ])
 
     if (!project || !projectUser) {
@@ -85,7 +86,7 @@ initialScreenRouter.get<IRequest, CF>(
     return new ImageResponse(
       // TODO: use user farcaster name instead of fid
       InitialScreen({
-        inviter: referrerFid.toString(),
+        inviter: farcasterDisplayName,
         projectName: project.name,
       }),
       {

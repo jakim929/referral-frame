@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@coinbase/onchainkit": "^0.4.3",
-    "@neynar/nodejs-sdk": "^1.9.4",
     "abitype": "^0.10.3",
     "itty-router": "^4.0.14",
     "kysely": "^0.27.2",

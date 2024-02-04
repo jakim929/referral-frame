@@ -8,6 +8,9 @@ export default {
     env: Env,
     ctx: ExecutionContext,
   ): Promise<Response> {
-    return router.handle(request, env, ctx).then(json).catch(error)
+    return router
+      .handle(request, env, ctx)
+      .then(json)
+      .catch(() => error(500))
   },
 }
