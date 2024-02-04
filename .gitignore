@@ -21,6 +21,7 @@ dev-dist
 *.njsproj
 *.sln
 *.sw?
+.vscode
 
 # Environment variables
 .env

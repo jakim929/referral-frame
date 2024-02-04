@@ -1,0 +1,11 @@
+name = "referral-frame-worker"
+main = "src/index.ts"
+compatibility_date = "2024-01-29"
+
+[vars]
+PUBLIC_URL = "https://frame.trythis.xyz"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "referral-frame-d1"
+database_id = "2cc32ddb-7031-40a9-b506-5bf4760842ec"

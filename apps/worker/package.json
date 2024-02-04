@@ -1,0 +1,29 @@
+{
+  "name": "@referral-frame/worker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "run:migrations": "wrangler d1 execute referral-frame-d1 --local --file=./schema.sql"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230807.0",
+    "@types/react": "^18.2.15",
+    "react": "^18.2.0",
+    "typescript": "^5.0.4",
+    "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "@coinbase/onchainkit": "^0.4.3",
+    "@neynar/nodejs-sdk": "^1.9.4",
+    "abitype": "^0.10.3",
+    "itty-router": "^4.0.14",
+    "kysely": "^0.27.2",
+    "kysely-d1": "^0.3.0",
+    "viem": "^2.7.2",
+    "workers-og": "^0.0.20",
+    "zod": "^3.22.4"
+  }
+}
